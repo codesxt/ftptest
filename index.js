@@ -1,13 +1,22 @@
 const FtpSrv = require('ftp-srv');
 const fs = require('fs');
-const ftpServer = new FtpSrv('ftp://127.0.0.1:2121', {
+const ftpServer = new FtpSrv('ftp://0.0.0.0:2121', {
   greeting    : "Conexión establecida con el servidor FTP.",
-  file_format : 'ls'
+  file_format : 'ls',
+  pasv_range : '8000-9000'
 });
 
 let users = [
   {
-    username :'station',
+    username :'romeral',
+    password :'romeral'
+  },
+  {
+    username :'colbun',
+    password :'colbun'
+  },
+  {
+    username :'password',
     password :'password'
   }
 ]
