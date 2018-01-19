@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ftp-srv": "^2.14.0"
+    "ftp-srv": "^2.14.0",
+    "node-schedule": "^1.3.0",
+    "request": "^2.83.0",
+    "walk": "^2.3.9"
   }
 }
