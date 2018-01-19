@@ -6,7 +6,7 @@ const request       = require('request');
 const path          = require('path')
 
 //const UPLOAD_URL    = 'http://localhost:3000/api/v1/hoboupload';
-const UPLOAD_URL    = 'https://heladas.utalca.cl/predicciones/api/v1/hoboupload';
+const UPLOAD_URL    = 'https://heladas.utalca.cl/api/v1/hoboupload';
 
 
 const ftpServer     = new FtpSrv('ftp://0.0.0.0:2121', {
