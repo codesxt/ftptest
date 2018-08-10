@@ -102,7 +102,7 @@ checkFiles = ()  => {
     validFiles.forEach((item) => {
       let formData = {
         'station' : item.station,
-        'file', fs.createReadStream(path.resolve(item.file))
+        'file'    : fs.createReadStream(item.file)
       }
       let req = request.post({url: UPLOAD_URL, formData: formData}, function (err, resp, body) {
         if(err){
