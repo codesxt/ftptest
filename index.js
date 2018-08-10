@@ -121,7 +121,7 @@ checkFiles = ()  => {
       });
       var form = req.form();
       form.append('station', item.station+'');
-      form.append('file', fs.createReadStream(path.resolve(item.file)));
+      form.append('file', fs.createReadStream(item.file));
     })
   });
 }
