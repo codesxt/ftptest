@@ -104,13 +104,11 @@ checkFiles = ()  => {
         method: 'POST',
         url: UPLOAD_URL,
         formData: {
-          file: {
-            value: fs.createReadStream(item.file),
-            options: { fileName: 'data.csv'}
-          }
+          station: item.station,
+          file: fs.createReadStream(item.file)
         }
       };
-      var req = request(options, function (err, resp, body) {
+      var req = request(options, (err, httpResponse, body) => {
         if(err){
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
           console.log(err);
