@@ -100,7 +100,11 @@ checkFiles = ()  => {
     console.log("Valid files:");
     console.log(validFiles);
     validFiles.forEach((item) => {
-      let req = request.post(UPLOAD_URL, function (err, resp, body) {
+      let formData = {
+        'station' : item.station,
+        'file', fs.createReadStream(path.resolve(item.file))
+      }
+      let req = request.post({url: UPLOAD_URL, formData: formData}, function (err, resp, body) {
         if(err){
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
           console.log(body);
@@ -121,9 +125,9 @@ checkFiles = ()  => {
           }
         }
       });
-      let form = req.form();
-      form.append('station', item.station);
-      form.append('file', fs.createReadStream(path.resolve(item.file)));
+      //let form = req.form();
+      //form.append('station', item.station);
+      //form.append('file', fs.createReadStream(path.resolve(item.file)));
     })
   });
 }
