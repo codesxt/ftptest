@@ -121,12 +121,9 @@ checkFiles = ()  => {
           }
         }
       });
-      let form = req.form({
-        'station' : item.station,
-        'file'    : fs.createReadStream(item.file))
-      });
-      //form.append('station', item.station);
-      //form.append('file', fs.createReadStream(item.file));
+      let form = req.form();
+      form.append('station', item.station);
+      form.append('file', fs.createReadStream(path.resolve(item.file)));
     })
   });
 }
