@@ -106,7 +106,7 @@ checkFiles = ()  => {
         formData: {
           file: {
             value: fs.createReadStream(item.file),
-            options: { fileName: req.fileName}
+            options: { fileName: 'data.csv'}
           }
         }
       };
