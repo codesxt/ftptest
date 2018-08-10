@@ -121,9 +121,10 @@ checkFiles = ()  => {
           }
         }
       });
-      var form = req.form();
-      form.append('station', item.station);
-      form.append('file', fs.createReadStream(item.file));
+      console.log(item)
+      //var form = req.form();
+      //form.append('station', item.station);
+      //form.append('file', fs.createReadStream(item.file));
     })
   });
 }
