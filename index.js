@@ -103,8 +103,6 @@ checkFiles = ()  => {
       var req = request.post(UPLOAD_URL, function (err, resp, body) {
         if(err){
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
-          console.log(body);
-          console.log(resp);
           console.log(err);
         }else{
           console.log('Resultado: ' + body);
