@@ -71,7 +71,7 @@ authenticate = (user, pass) => {
 }
 
 checkFiles = ()  => {
-  console.log("Revisando archivos recibidos...");
+  console.log("\n\nRevisando archivos recibidos...");
   const walker  = walk.walk('./files', { followLinks: false });
   let files      = [];
   let validFiles = [];
@@ -81,23 +81,26 @@ checkFiles = ()  => {
     let extension  = path.extname(stat.name);
     files.push(root + '/' + stat.name);
 
-    console.log("Reading file: " + stat.name);
-    console.log("  From station: " + station);
-    console.log("  With extension: " + path.extname(stat.name));
+    console.log("Leyendo archivo: " + stat.name);
+    console.log("  De la estación: " + station);
+    console.log("  Con extensión: " + path.extname(stat.name));
     if(['.csv', '.CSV'].includes(extension)){
-      console.log("  File is valid to be uploaded.");
+      console.log("  >> Archivo válido para ser subido.");
       validFiles.push({
         file     : root + '/' + stat.name,
         station  : station
       });
+    }else{
+      console.log("  >> Archivo no válido para ser subido.");
     }
     next();
   });
 
   walker.on('end', function() {
-    console.log("All read files:");
+    console.log('\n\nArchivos verificados. Intentando subida...');
+    console.log("Todos los archivos encontrados:");
     console.log(files);
-    console.log("Valid files:");
+    console.log("Archivos válidos:");
     console.log(validFiles);
     validFiles.forEach((item) => {
       let options = {
@@ -113,9 +116,13 @@ checkFiles = ()  => {
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
           console.log(err);
         }else{
-          console.log('Resultado: ' + body);
-          if(JSON.parse(body).message=='Archivo subido exitosamente.'){
+          console.log('Resultado para el archivo: ' + item.file);
+          console.log('  Respuesta del servidor: ' + JSON.parse(body).message);
+          console.log('  Registros insertados: ' + JSON.parse(body).nInserted)
+          console.log('  Código HTTP: ' + httpResponse.statusCode);
+          if(httpResponse.statusCode==201 || httpResponse.statusCode == 200){
             // Eliminar archivo original
+            console.log('  Limpiando archivo: ' + item.file);
             fs.unlink(item.file, (error) => {
               if(error){
                 console.log("Ocurrió un error al eliminar el archivo: " + item.file);
