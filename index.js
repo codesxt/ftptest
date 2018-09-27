@@ -140,8 +140,8 @@ checkFiles = ()  => {
                 console.log("Se eliminó exitosamente el archivo: " + item.file);
               }
             })
-          }else if(httpResponse.statusCode==408){
-            console.log('  Limpiando archivo por Timeout: ' + item.file);
+          }else if(httpResponse.statusCode==400){
+            console.log('  Limpiando archivo por error: ' + item.file);
             fs.unlink(item.file, (error) => {
               if(error){
                 console.log("Ocurrió un error al eliminar el archivo: " + item.file);
