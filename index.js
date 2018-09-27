@@ -119,6 +119,7 @@ checkFiles = ()  => {
           try{
             JSON.parse(body);
           }catch{
+            console.log("Falla el parseo...")
             console.log(body);
           }
           console.log('Resultado para el archivo: ' + item.file);
