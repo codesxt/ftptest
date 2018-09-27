@@ -116,6 +116,11 @@ checkFiles = ()  => {
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
           console.log(err);
         }else{
+          try{
+            JSON.parse(body);
+          }catch{
+            console.log(body);
+          }
           console.log('Resultado para el archivo: ' + item.file);
           console.log('  Respuesta del servidor: ' + JSON.parse(body).message);
           console.log('  Registros insertados: ' + JSON.parse(body).nInserted)
