@@ -142,7 +142,7 @@ checkFiles = ()  => {
             })
           }else{
             console.log('Ocurrió un error en el servidor:');
-            console.log(body.error);
+            console.log(resp.error);
           }
         }
       });/*
