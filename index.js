@@ -116,15 +116,18 @@ checkFiles = ()  => {
           console.log('Ocurrió un error al subir el archivo: ' + item.file);
           console.log(err);
         }else{
+          let resp = null;
           try{
-            JSON.parse(body);
+            resp = JSON.parse(body);
           }catch{
-            console.log("Falla el parseo...")
+            console.log("Falló el parseo del request body...")
             console.log(body);
           }
           console.log('Resultado para el archivo: ' + item.file);
-          console.log('  Respuesta del servidor: ' + JSON.parse(body).message);
-          console.log('  Registros insertados: ' + JSON.parse(body).nInserted)
+          if(resp){
+            console.log('  Respuesta del servidor: ' + JSON.parse(body).message);
+            console.log('  Registros insertados: ' + JSON.parse(body).nInserted)
+          }
           console.log('  Código HTTP: ' + httpResponse.statusCode);
           if(httpResponse.statusCode==201 || httpResponse.statusCode == 200){
             // Eliminar archivo original
