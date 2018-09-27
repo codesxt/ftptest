@@ -140,6 +140,9 @@ checkFiles = ()  => {
                 console.log("Se eliminó exitosamente el archivo: " + item.file);
               }
             })
+          }else{
+            console.log('Ocurrió un error en el servidor:');
+            console.log(body.error);
           }
         }
       });/*
